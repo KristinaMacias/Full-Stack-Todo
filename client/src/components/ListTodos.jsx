@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import EditTodo from './EditTodo';
 
 const ListTodos = () => {
     //state
@@ -10,7 +11,7 @@ const ListTodos = () => {
             const deleteTodo = await fetch(`http://localhost:5000/todos/${id}`, {
                 method: 'DELETE'
             });
-            setTodos(todos.filter(todo => todo.todo_id !== id));
+            setTodos(todos.filter(todo => todo.todo_id !== id)); // leave the ones that arent deleted
         } catch (err) {
             console.error("Oops! Something went wrong: ", err.message);
         }
@@ -50,7 +51,7 @@ const ListTodos = () => {
                         <tr key={todo.todo_id}>
                             <td>{todo.description}</td>
                             <td>
-                                <button>Edit</button>
+                                <EditTodo todo={todo} />
                             </td>
                             <td>
                                 <button onClick={() => deleteTodo(todo.todo_id)}>Delete</button>
