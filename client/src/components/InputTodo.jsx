@@ -21,7 +21,8 @@ const InputTodo = () => {
         },
         body: JSON.stringify(body), // Convert the body to a string
       });
-      console.log(response);
+      
+      window.location ="/"
     } catch (err) {
       console.error("Oops. Something went wrong: ", err.message);
     }
