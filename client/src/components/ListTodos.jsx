@@ -29,6 +29,11 @@ const ListTodos = () => {
         }
     }
 
+    // function that updates the state once edited (passed to edit component)
+    const updateTodos = (todo) => {
+        setTodos(todos.map(t => (t.todo_id === todo.todo_id ? todo : t)));
+    }
+    
     //useEffect (calls getTodos when the component mounts)
     useEffect (() => {
         getTodos();
@@ -51,7 +56,7 @@ const ListTodos = () => {
                         <tr key={todo.todo_id}>
                             <td>{todo.description}</td>
                             <td>
-                                <EditTodo todo={todo} />
+                            <EditTodo todo={todo} onUpdateTodo={updateTodos} />
                             </td>
                             <td>
                                 <button onClick={() => deleteTodo(todo.todo_id)}>Delete</button>
